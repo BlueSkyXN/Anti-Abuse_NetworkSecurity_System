@@ -35,10 +35,21 @@ jobs:
 
       # 将下载的IP数据库作为输入文件运行脚本
 
-    - name: Upload Results
+    - name: Upload Results - ipdbapi030101
       uses: actions/upload-artifact@v2
       with:
         name: ipdbapi030101-results
         path: |
           ipdbapi030101-80.xlsx
           ipdbapi030101-443.xlsx
+
+    - name: Run XLSX Combiner
+      run: |
+        python XLSX_Combiner.py
+
+    - name: Upload Merged.xlsx
+      uses: actions/upload-artifact@v2
+      with:
+        name: Merged.xlsx
+        path: |
+          Merged.xlsx
