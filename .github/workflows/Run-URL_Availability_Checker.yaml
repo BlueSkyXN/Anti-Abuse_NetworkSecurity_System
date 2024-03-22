@@ -64,7 +64,8 @@ jobs:
           ipdbapi030101-443.xlsx
 
     - name: Run AutoSH_zip-baipiao-eu-org.sh
-      run: bash AutoSH_zip-baipiao-eu-org.sh > log/zip-baipiao-eu-org.log
+      run: |
+        bash AutoSH_zip-baipiao-eu-org.sh > log/zip-baipiao-eu-org.log
 
     - name: Upload zip-baipiao-eu-org
       uses: actions/upload-artifact@v2
@@ -72,19 +73,18 @@ jobs:
         name: zip-baipiao-eu-org_txt
         path: |
           zip-baipiao-eu-org/*
-          31898-*.txt
-          45102-*.txt
+          cp zip-baipiao-eu-org/*.xlsx .
 
     - name: Run XLSX Combiner
       run: |
         python XLSX_Combiner.py
 
-    - name: Upload Merged.xlsx
+    - name: Upload CF-Proxy-IP-Global-Merged-xlsx
       uses: actions/upload-artifact@v2
       with:
-        name: Merged.xlsx
+        name: CF-Proxy-IP-Global-Merged-xlsx
         path: |
-          Merged.xlsx
+          CF-Proxy-IP-Global-Merged.xlsx
 
     - name: Upload log
       uses: actions/upload-artifact@v2
@@ -92,3 +92,10 @@ jobs:
         name: AANS_log
         path: |
           log/*
+
+    - name: Upload All Pak
+      uses: actions/upload-artifact@v2
+      with:
+        name: All Pak
+        path: |
+          /home/runner/work/Anti-Abuse_NetworkSecurity_System/Anti-Abuse_NetworkSecurity_System/*
