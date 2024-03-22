@@ -29,9 +29,10 @@ jobs:
       # 使用 curl 下载IP数据库并保存为 ipdbapi030101.txt
 
     - name: Run URL Availability Checker
-      run: 
+      run: |
         python URL_Availability_Checker.py --input ipdbapi030101.txt --output ipdbapi030101-80.xlsx --port 80
         python URL_Availability_Checker.py --input ipdbapi030101.txt --output ipdbapi030101-443.xlsx --port 443
+
       # 将下载的IP数据库作为输入文件运行脚本
 
     - name: Upload Results
