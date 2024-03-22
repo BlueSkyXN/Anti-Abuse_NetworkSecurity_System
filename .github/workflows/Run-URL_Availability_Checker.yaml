@@ -25,7 +25,7 @@ jobs:
         pip install "httpx[http2]" openpyxl argparse pandas
 
     - name: Install curl and unzip
-      run: sudo apt-get update && sudo apt-get install -y curl unzip
+      run: sudo apt-get install -y curl unzip
 
     - name: Download from ipdb.api.030101.xyz
       run: curl http://ipdb.api.030101.xyz/?type=proxy > ipdbapi030101.txt
@@ -57,6 +57,9 @@ jobs:
         path: |
           ipdbapi030101-80.xlsx
           ipdbapi030101-443.xlsx
+
+    - name: Run AutoSH_zip-baipiao-eu-org.sh
+      run: bash AutoSH_zip-baipiao-eu-org.sh
 
     - name: Run XLSX Combiner
       run: |
