@@ -27,6 +27,11 @@ jobs:
     - name: Install curl and unzip
       run: sudo apt-get install -y curl unzip
 
+    - name: Prepare  directory
+      run: |
+        mkdir -p log
+        mkdir -p zip-baipiao-eu-org
+
     - name: Download from ipdb.api.030101.xyz
       run: curl http://ipdb.api.030101.xyz/?type=proxy > ipdbapi030101.txt
 
