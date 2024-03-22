@@ -80,6 +80,13 @@ jobs:
 
     - name: Run XLSX Combiner
       run: |
+        # 打印当前工作目录下的所有文件和目录的绝对路径
+        echo "当前工作目录的所有文件和目录的绝对路径:"
+        find "$(pwd)" -type f
+        # 打印新解压出的文件夹中的所有内容的绝对路径
+        echo "新解压出的文件夹zip-baipiao-eu-org中的所有内容的绝对路径:"
+        find "$(pwd)/zip-baipiao-eu-org" -type f
+        
         python XLSX_Combiner.py
 
     - name: Upload CF-Proxy-IP-Global-Merged-xlsx
