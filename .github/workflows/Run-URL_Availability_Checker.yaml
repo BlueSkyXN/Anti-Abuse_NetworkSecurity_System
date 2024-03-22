@@ -1,0 +1,39 @@
+name: URL Availability Checker
+
+# 触发工作流程的事件，这里设置为手动触发
+on: [workflow_dispatch]
+
+jobs:
+  check-url-availability:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install httpx openpyxl argparse
+
+    - name: Download IP database
+      run: curl http://ipdb.api.030101.xyz/?type=proxy > ipdbapi030101.txt
+      # 使用 curl 下载IP数据库并保存为 ipdbapi030101.txt
+
+    - name: Run URL Availability Checker
+      run: 
+        python Run-URL_Availability_Checker.py --input ipdbapi030101.txt --output ipdbapi030101-80.xlsx --port 80
+        python Run-URL_Availability_Checker.py --input ipdbapi030101.txt --output ipdbapi030101-443.xlsx --port 443
+      # 将下载的IP数据库作为输入文件运行脚本
+
+    - name: Upload Results
+      uses: actions/upload-artifact@v2
+      with:
+        name: ipdbapi030101-results
+        path: |
+          ipdbapi030101-80.xlsx
+          ipdbapi030101-443.xlsx

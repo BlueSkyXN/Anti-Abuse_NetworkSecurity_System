@@ -70,8 +70,8 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="IP可用性测试工具")
-    parser.add_argument("--input", help="输入文件路径", default=r"F:\Download\45102-0-80.txt")
-    parser.add_argument("--output", help="输出文件路径", default=r"F:\Download\45102-0-80.xlsx")
+    parser.add_argument("--input", help="输入文件路径", default=r"45102-0-80.txt")
+    parser.add_argument("--output", help="输出文件路径", default=r"45102-0-80.xlsx")
     parser.add_argument("--domain", help="测试域名", default='dash.cloudflare.com')
     parser.add_argument("--port", help="端口号", type=int, default=80)
     parser.add_argument("--schema", help="'http' 或 'https'", default='http')
