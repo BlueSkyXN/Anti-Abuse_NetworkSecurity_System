@@ -26,8 +26,8 @@ jobs:
 
     - name: Run URL Availability Checker
       run: 
-        python Run-URL_Availability_Checker.py --input ipdbapi030101.txt --output ipdbapi030101-80.xlsx --port 80
-        python Run-URL_Availability_Checker.py --input ipdbapi030101.txt --output ipdbapi030101-443.xlsx --port 443
+        python URL_Availability_Checker.py --input ipdbapi030101.txt --output ipdbapi030101-80.xlsx --port 80
+        python URL_Availability_Checker.py --input ipdbapi030101.txt --output ipdbapi030101-443.xlsx --port 443
       # 将下载的IP数据库作为输入文件运行脚本
 
     - name: Upload Results
