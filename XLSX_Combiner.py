@@ -1,6 +1,4 @@
 import os
-import openpyxl
-from openpyxl.utils.dataframe import dataframe_to_rows
 import pandas as pd
 
 def merge_xlsx_files(output_file='Merged.xlsx'):
@@ -25,7 +23,7 @@ def merge_xlsx_files(output_file='Merged.xlsx'):
     # 将合并后的数据写入到名为ALL的工作表中
     all_data.to_excel(writer, sheet_name='ALL', index=False)
 
-    writer.save()
+    # 保存并关闭ExcelWriter
     writer.close()
 
 

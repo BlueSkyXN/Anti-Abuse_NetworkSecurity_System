@@ -8,7 +8,7 @@ on:
       - main
 
 jobs:
-  check-url-availability:
+  Check-CF-Proxy-IP-Global:
     runs-on: ubuntu-latest
     
     steps:
