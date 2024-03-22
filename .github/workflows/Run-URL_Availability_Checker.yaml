@@ -18,6 +18,7 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.11
+        cache: 'pip' # caching pip dependencies
 
     - name: Install dependencies
       run: |
@@ -31,6 +32,9 @@ jobs:
       run: |
         mkdir -p log
         mkdir -p zip-baipiao-eu-org
+
+    - name: Download IPDB
+      run: curl -L https://raw.githubusercontent.com/FW27623/qqwry/main/qqwry.dat -o qqwry.dat
 
     - name: Download from ipdb.api.030101.xyz
       run: curl http://ipdb.api.030101.xyz/?type=proxy > ipdbapi030101.txt
@@ -98,4 +102,9 @@ jobs:
       with:
         name: All Pak
         path: |
-          /home/runner/work/Anti-Abuse_NetworkSecurity_System/Anti-Abuse_NetworkSecurity_System/*
+          /home/runner/work/Anti-Abuse_NetworkSecurity_System/Anti-Abuse_NetworkSecurity_System/*.xlsx
+          /home/runner/work/Anti-Abuse_NetworkSecurity_System/Anti-Abuse_NetworkSecurity_System/**/*.xlsx
+          /home/runner/work/Anti-Abuse_NetworkSecurity_System/Anti-Abuse_NetworkSecurity_System/*.txt
+          /home/runner/work/Anti-Abuse_NetworkSecurity_System/Anti-Abuse_NetworkSecurity_System/**/*.txt
+          /home/runner/work/Anti-Abuse_NetworkSecurity_System/Anti-Abuse_NetworkSecurity_System/*.log
+          /home/runner/work/Anti-Abuse_NetworkSecurity_System/Anti-Abuse_NetworkSecurity_System/**/*.log

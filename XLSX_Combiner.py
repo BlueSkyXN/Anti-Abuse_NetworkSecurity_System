@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-def merge_xlsx_files(output_file='Merged.xlsx'):
+def merge_xlsx_files(output_file='CF-Proxy-IP-Global-Merged.xlsx'):
     writer = pd.ExcelWriter(output_file, engine='openpyxl')
 
     all_data = pd.DataFrame()
