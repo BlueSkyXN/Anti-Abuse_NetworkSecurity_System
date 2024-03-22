@@ -9,6 +9,10 @@ def merge_xlsx_files(output_file='Merged.xlsx'):
     all_data = pd.DataFrame()
 
     for filename in os.listdir('.'):
+        # 跳过输出文件，避免尝试读取它
+        if filename == output_file:
+            continue
+
         if filename.endswith('.xlsx') and not filename.startswith('~$'):
             print(f'处理文件: {filename}')
             # 明确指定使用openpyxl引擎读取Excel文件

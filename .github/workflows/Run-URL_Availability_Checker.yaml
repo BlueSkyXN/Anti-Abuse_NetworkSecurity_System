@@ -61,6 +61,15 @@ jobs:
     - name: Run AutoSH_zip-baipiao-eu-org.sh
       run: bash AutoSH_zip-baipiao-eu-org.sh
 
+    - name: Upload zip-baipiao-eu-org
+      uses: actions/upload-artifact@v2
+      with:
+        name: zip-baipiao-eu-org_txt
+        path: |
+          zip-baipiao-eu-org/*
+          31898-*.txt
+          45102-*.txt
+
     - name: Run XLSX Combiner
       run: |
         python XLSX_Combiner.py
