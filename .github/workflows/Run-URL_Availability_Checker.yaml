@@ -22,7 +22,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install "httpx[http2]" openpyxl argparse
+        pip install "httpx[http2]" openpyxl argparse pandas
 
     - name: Download IP database
       run: curl http://ipdb.api.030101.xyz/?type=proxy > ipdbapi030101.txt
