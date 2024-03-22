@@ -22,5 +22,5 @@ for FILE in ${FOLDER_PATH}/*.txt; do
   OUTPUT_FILE="${FOLDER_PATH}/$(basename $FILE .txt).xlsx"
 
   # 运行URL Availability Checker
-  python URL_Availability_Checker.py --input "$FILE" --output "$OUTPUT_FILE" --port $PORT --schema $SCHEMA
+  python URL_Availability_Checker.py --input "$FILE" --output "$OUTPUT_FILE" --port $PORT --schema $SCHEMA > log/"$FILE".log
 done

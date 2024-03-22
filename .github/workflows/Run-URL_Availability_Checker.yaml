@@ -46,8 +46,8 @@ jobs:
 
     - name: Run URL Availability Checker with ipdb.api.030101.xyz
       run: |
-        python URL_Availability_Checker.py --input ipdbapi030101.txt --output ipdbapi030101-80.xlsx --port 80
-        python URL_Availability_Checker.py --input ipdbapi030101.txt --output ipdbapi030101-443.xlsx --port 443
+        python URL_Availability_Checker.py --input ipdbapi030101.txt --output ipdbapi030101-80.xlsx --port 80 --schema http  > log/ipdbapi030101-80.log
+        python URL_Availability_Checker.py --input ipdbapi030101.txt --output ipdbapi030101-443.xlsx --port 443  --schema https > log/ipdbapi030101-443.log
 
 
     - name: Upload Results_ipdb-api-030101-xyz
@@ -59,7 +59,7 @@ jobs:
           ipdbapi030101-443.xlsx
 
     - name: Run AutoSH_zip-baipiao-eu-org.sh
-      run: bash AutoSH_zip-baipiao-eu-org.sh
+      run: bash AutoSH_zip-baipiao-eu-org.sh > log/zip-baipiao-eu-org.log
 
     - name: Upload zip-baipiao-eu-org
       uses: actions/upload-artifact@v2
@@ -80,3 +80,10 @@ jobs:
         name: Merged.xlsx
         path: |
           Merged.xlsx
+
+    - name: Upload log
+      uses: actions/upload-artifact@v2
+      with:
+        name: AANS_log
+        path: |
+          log/*
