@@ -11,7 +11,8 @@ def merge_xlsx_files(output_file='Merged.xlsx'):
     for filename in os.listdir('.'):
         if filename.endswith('.xlsx') and not filename.startswith('~$'):
             print(f'处理文件: {filename}')
-            df = pd.read_excel(filename)
+            # 明确指定使用openpyxl引擎读取Excel文件
+            df = pd.read_excel(filename, engine='openpyxl')
             all_data = pd.concat([all_data, df], ignore_index=True)
 
             # 将原始表格数据复制到以文件名命名的新工作表中
@@ -22,6 +23,7 @@ def merge_xlsx_files(output_file='Merged.xlsx'):
 
     writer.save()
     writer.close()
+
 
 if __name__ == "__main__":
     merge_xlsx_files()

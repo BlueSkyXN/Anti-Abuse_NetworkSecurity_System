@@ -24,21 +24,36 @@ jobs:
         python -m pip install --upgrade pip
         pip install "httpx[http2]" openpyxl argparse pandas
 
-    - name: Download IP database
-      run: curl http://ipdb.api.030101.xyz/?type=proxy > ipdbapi030101.txt
-      # 使用 curl 下载IP数据库并保存为 ipdbapi030101.txt
+    - name: Install curl and unzip
+      run: sudo apt-get update && sudo apt-get install -y curl unzip
 
-    - name: Run URL Availability Checker
+    - name: Download from ipdb.api.030101.xyz
+      run: curl http://ipdb.api.030101.xyz/?type=proxy > ipdbapi030101.txt
+
+    - name: Download from zip.baipiao.eu.org
+      run: curl -L https://zip.baipiao.eu.org/ -o zip-baipiao-eu-org.zip
+
+    - name: Unzip zip-baipiao-eu-org.zip
+      run: |
+        unzip zip-baipiao-eu-org.zip -d ./zip-baipiao-eu-org
+        # 打印当前工作目录下的所有文件和目录的绝对路径
+        echo "当前工作目录的所有文件和目录的绝对路径:"
+        find "$(pwd)" -type f
+        # 打印新解压出的文件夹中的所有内容的绝对路径
+        echo "新解压出的文件夹zip-baipiao-eu-org中的所有内容的绝对路径:"
+        find "$(pwd)/zip-baipiao-eu-org" -type f
+
+
+    - name: Run URL Availability Checker with ipdb.api.030101.xyz
       run: |
         python URL_Availability_Checker.py --input ipdbapi030101.txt --output ipdbapi030101-80.xlsx --port 80
         python URL_Availability_Checker.py --input ipdbapi030101.txt --output ipdbapi030101-443.xlsx --port 443
 
-      # 将下载的IP数据库作为输入文件运行脚本
 
-    - name: Upload Results - ipdbapi030101
+    - name: Upload Results_ipdb-api-030101-xyz
       uses: actions/upload-artifact@v2
       with:
-        name: ipdbapi030101-results
+        name: ipdb-api-030101-xyz_results
         path: |
           ipdbapi030101-80.xlsx
           ipdbapi030101-443.xlsx
